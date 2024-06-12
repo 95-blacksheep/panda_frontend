@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="../../images/panda.svg" />
+
+    <title>Panda</title>
+
+    <!--Google's Material Font-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!--Links-->
+    <link rel="stylesheet" href="../../css/styles.css" />
+  </head>
+
+
+
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="../../admin/index.html">
+            <h3>Pan<span>Da</span></h3>
+          </a>
+        </div>
+
+        <div class="nav_items">
+            <ul class="navlist">
+              <li><a href="../../faqs.html" id="faqs">FAQ's</a></li>
+              <li><a href="../../admin/index.html" id="dashboard">Dashboard</a></li>
+              <li><a href="../../admin/logout.html" id="logout">Logout</a></li>
+            </ul>
+  
+  
+              <div class="nav_btns">
+                <btn id="open_nav-btn" class="material-symbols-outlined">
+                    menu
+                </btn>
+                <btn id="close_nav-btn" class="material-symbols-outlined">
+                    close
+                </btn>
+            </div>
+          </div>
+      </nav>
+    </header>
+
+
+
+
+
+
+
+
+    <section class="dashboard">
+        <div class="dashboard_container">
+            <aside>
+
+
+
+                
+                <div class="sidebar_toggle">
+                    <btn class="material-symbols-outlined" id="show_sidebar_btn">
+                      left_panel_close
+                    </btn>
+              
+                    <btn class="material-symbols-outlined" id="hide_sidebar_btn">
+                      left_panel_open
+                    </btn>
+                  </div>
+
+
+
+                  
+                <center>
+                    <div class="profile">
+                        <img src="../../images/dashboard_profile.jpg" alt="User's Profile Pic." />
+                        <h3 id="username">Pw/L/Cpl. Janet Jackson</h3>
+                        <p>Admin</p>
+                    </div>
+                </center>
+
+                <div class="aside_links">
+                    <div class="aside_links-group" style="margin-bottom: 2rem; padding: 0 1rem">
+                        <div class="group_name">
+                            <a href="../../admin/index.html" class="is_active">
+                                <span><i class="material-symbols-outlined">
+                                        home</i></span>
+                                Dashboard</a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="aside_links-group">
+                        <div class="group_name">
+                            <p>
+                                SPOs' Vault
+                            </p>
+                            <span>
+                                <btn class="open_btn"><i class="material-symbols-outlined">
+                                        arrow_drop_down</i></btn>
+                                <btn class="close_btn"><i class="material-symbols-outlined">arrow_drop_up</i></btn>
+                            </span>
+                        </div>
+
+                        <div class="group_items" id="office_ops">
+                            <ul>
+                                <li>
+                                    <a href="index.html" style="color: var(--color_gold);">
+                                        <span><i class="material-symbols-outlined">
+                                            vpn_key_alert</i></span>
+                                        SPOs' Index</a>
+                                </li>
+
+                                <li>
+                                    <a href="new_SPO.html">
+                                        <span><i class="material-symbols-outlined">
+                                            vpn_key_alert</i></span>
+                                        New SPO</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <main>
+                
+                <div class="alert_message success" id="alert_message">
+                    <p>
+                        This is success!
+                    </p>
+                    <script>
+                        setTimeout(() => {
+                            alert_message.remove();
+                        }, 10000);
+                    </script>
+                </div>
+                <div class="main_container">
+                    <div class="main_title">
+                        <h1>Preview of <span> SPOs' Index</span></h1>
+                        <p>Preview of all Senior Police Officers.</p>
+                    </div>
+
+
+                    <div class="search_container">
+                        <center>
+                            <input type="text" class="search" id="search_input" placeholder="Search...">
+                        </center>
+                    </div>
+
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const searchInput = document.getElementById("search_input");
+                            const tableRows = document.querySelectorAll("#main_table tbody tr");
+
+                            searchInput.addEventListener("input", function () {
+                                // Get the input value and remove trailing consecutive spaces after each word
+                                const inputValue = this.value.replace(/\s+/g, ' ').trim();
+                                const searchText = inputValue.toLowerCase();
+
+                                let found = false;
+
+                                tableRows.forEach(function (row) {
+                                    const pn = row.querySelector(".number#pn").textContent
+                                        .toLowerCase();
+                                    const so = row.querySelector(".number#po").textContent
+                                        .toLowerCase();
+                                    const name = row.querySelector(".name").textContent
+                                        .toLowerCase();
+
+                                    if (pn.includes(searchText) || so.includes(searchText) ||
+                                        name.includes(searchText)) {
+                                        row.style.display = "";
+                                        found = true;
+                                        document.getElementById("recordnotfound").style
+                                            .display = "none";
+                                    } else {
+                                        row.style.display = "none";
+                                    }
+                                });
+
+                                // If no matching rows found, hide the table
+                                if (!found) {
+                                    document.querySelector(".main_table").style.display = "none";
+                                    document.getElementById("recordnotfound").style.display = "block";
+
+                                } else {
+                                    document.querySelector(".main_table").style.display = "";
+                                }
+                            });
+                        });
+                    </script>
+
+
+
+
+
+                    <div class="action_panel">
+
+                        <div class="action_group" id="sort_group">
+                            <i class="material-symbols-outlined">
+                                person_search</i>
+                            <p>Sort</p>
+                        </div>
+                        <div class="action_group" id="columns_group">
+                            <i class="material-symbols-outlined">
+                                splitscreen_right</i>
+                            <p>Columns</p>
+                        </div>
+                        <div class="action_group" id="print">
+                            <i class="material-symbols-outlined">
+                                print</i>
+                            <p>Print</p>
+                        </div>
+                        <div class="action_group" id="export">
+                            <i class="material-symbols-outlined">
+                                export_notes</i>
+                            <p>Export</p>
+                        </div>
+                    </div>
+
+
+
+                    <script>
+                        // Function to print the table
+                        document.getElementById("print").addEventListener("click", function () {
+                            var printContents = document.querySelector('.main_table').innerHTML;
+                            var originalContents = document.body.innerHTML;
+                            document.body.innerHTML = printContents;
+                            window.print();
+                            document.body.innerHTML = originalContents;
+                        });
+                    </script>
+
+
+                    <script>
+                        // Function to export data to Excel
+                        function exportToExcel() {
+                            // Get the table body
+                            var tableBody = document.getElementById("tableBody");
+                            // Get the table head
+                            var tableHead = document.getElementById("main_table").getElementsByTagName('thead')[0];
+
+                            // Create a new Workbook
+                            var wb = XLSX.utils.book_new();
+                            // Convert table to worksheet
+                            var ws = XLSX.utils.table_to_sheet(tableBody);
+                            // Include table head
+                            var wscols = [];
+                            for (var i = 0; i < tableHead.rows[0].cells.length; i++) {
+                                wscols.push({
+                                    wch: tableHead.rows[0].cells[i].offsetWidth / 60
+                                });
+                            }
+                            ws['!cols'] = wscols;
+
+                            // Remove unnecessary columns (delete and edit buttons)
+                            delete ws.A;
+                            delete ws.O;
+
+                            // Add worksheet to workbook
+                            XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+                            // Save workbook as Excel file
+                            XLSX.writeFile(wb, "data.xlsx");
+                        }
+
+                        // Add click event listener to export button
+                        document.getElementById("export").addEventListener("click", exportToExcel);
+                    </script>
+
+
+
+
+                    <script>
+                        document.getElementById('columns_group').addEventListener('click', function () {
+                            var actionBox = document.getElementById('columns_box');
+                            actionBox.classList.toggle('visible');
+                        });
+
+                        document.getElementById('sort_group').addEventListener('click', function () {
+                            var actionBox = document.getElementById('sort_box');
+                            actionBox.classList.toggle('visible');
+                        });
+
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const checkboxes = document.querySelectorAll(
+                                '.action_box-selector input[type="checkbox"]');
+                            checkboxes.forEach(checkbox => {
+                                checkbox.addEventListener('change', function () {
+                                    const columnClass = this.value;
+                                    const columns = document.querySelectorAll(
+                                        `#main_table th#${columnClass}, #main_table td#${columnClass}`
+                                    );
+                                    columns.forEach(column => {
+                                        column.classList.toggle('hidden', !this
+                                            .checked);
+                                    });
+                                });
+                            });
+                        });
+                    </script>
+
+
+
+
+
+                    <div class="action_box" id="columns_box">
+                        <div class="action_box-title">
+                            <p>Filter columns</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="pn_checkbox" name="pn" value="pn" checked>
+                            <p>PN</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="po_checkbox" name="po" value="po" checked>
+                            <p>PO</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="dob_checkbox" name="dob" value="dob" checked>
+                            <p>DoB</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="doe_checkbox" name="doe" value="doe" checked>
+                            <p>DoE</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="asp_checkbox" name="asp" value="asp" checked>
+                            <p>ASP</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="dsp_checkbox" name="dsp" value="dsp" checked>
+                            <p>DSP</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="supt_checkbox" name="supt" value="supt" checked>
+                            <p>SUPT</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="csupt_checkbox" name="csupt" value="csupt" checked>
+                            <p>C/SUPT</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="acp_checkbox" name="acp" value="acp" checked>
+                            <p>ACP</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="dcop_checkbox" name="dcop" value="dcop" checked>
+                            <p>DCOP</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="cop_checkbox" name="cop" value="cop" checked>
+                            <p>COP</p>
+                        </div>
+                        <div class="action_box-selector">
+                            <input type="checkbox" id="retires_checkbox" name="retires" value="retires" checked>
+                            <p>Retires</p>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="action_box" id="sort_box">
+                        <div class="action_box-title">
+                            <p>Sort By</p>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="rank" required style="background-color: var(--deep_bg);">
+                                <option value="Rank" disabled selected>Rank</option>
+                                <option value="dob">DoB</option>
+                                <option value="asp">ASP</option>
+                                <option value="dsp">DSP</option>
+                                <option value="supt">SUPT</option>
+                                <option value="csupt">C/SUPT</option>
+                                <option value="acp">ACP</option>
+                                <option value="dcop">DCOP</option>
+                                <option value="cop">COP</option>
+                                <option value="retires">Retires</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <input type="date" id="onorbefore" required>
+                            <label for="onorbefore">On Or Before:</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="date" id="onorafter" required>
+                            <label for="onorafter">On Or After:</label>
+                        </div>
+                    </div>
+
+
+
+                    <center>
+                        <div class="recordnotfound" id="recordnotfound" style="padding: 2rem 2rem; display: none; margin-top: 7rem; border-radius: .5rem; width: 25rem;
+                        background-color: #273247 ; ">
+                            <h3 style=" color: var(--color_danger); font-size: 1.5rem; text-decoration: underline;
+                            padding: 1rem;">Record Not Found!</h3>
+                            <p style=" font-size: .9rem;">Ensure Correct Spelling and Arrangement of Names or Format
+                                of Service Numbers and search again.</p>
+                        </div>
+                    </center>
+
+
+                    <div class="main_table">
+                        <table id="main_table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="select_all" name="select_all" value="select_all">
+                                    </th>
+                                    <th>Rec</th>
+                                    <th id="pn">S/No.</th>
+                                    <th id="po">PN</th>
+                                    <th>Name</th>
+                                    <th id="dob">DoB</th>
+                                    <th id="doe">DoE</th>
+                                    <th id="asp">Asp</th>
+                                    <th id="dsp">Dsp</th>
+                                    <th id="supt">Supt</th>
+                                    <th id="csupt">C/Supt</th>
+                                    <th id="acp">Acp</th>
+                                    <th id="dcop">Dcop</th>
+                                    <th id="cop">Cop</th>
+                                    <th id="retires">Retires</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected">
+                                    </td>
+                                    <td>1</td>
+                                    <td class="number" id="pn">SO.54536</td>
+                                    <td class="number" id="po">PN.12345</td>
+                                    <td class="name" style="width: 8rem;">John Mensah</td>
+                                    <td class="number" id="dob">04-04-1965</td>
+                                    <td class="number" id="doe">01-01-2000</td>
+                                    <td class="number" id="asp">01-01-2004</td>
+                                    <td class="number" id="dsp">01-01-2008</td>
+                                    <td class="number" id="supt">01-01-2012</td>
+                                    <td class="number" id="csupt">01-01-2016</td>
+                                    <td class="number" id="acp">01-01-2020</td>
+                                    <td class="number" id="dcop">01-01-2024</td>
+                                    <td class="number" id="cop">01-01-2024</td>
+                                    <td class="number" id="retires" style="color: yellow;">1-06-2024</td>
+                                    <td class="edit" id="edit">
+                                        <i class="material-symbols-outlined">
+                                            ink_pen</i>
+                                    </td>
+                                    <td class="delete" id="delete">
+                                        <i class="material-symbols-outlined">
+                                            delete</i>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>2</td>
+                                    <td class="number" id="pn">SO.12345</td>
+                                    <td class="number" id="po">PN.67890</td>
+                                    <td class="name" style="width: 8rem;">Alice Johnson</td>
+                                    <td class="number" id="dob">05-15-1978</td>
+                                    <td class="number" id="doe">03-21-2002</td>
+                                    <td class="number" id="asp">02-05-2006</td>
+                                    <td class="number" id="dsp">04-12-2010</td>
+                                    <td class="number" id="supt">03-18-2014</td>
+                                    <td class="number" id="csupt">02-23-2018</td>
+                                    <td class="number" id="acp">01-07-2022</td>
+                                    <td class="number" id="dcop">11-19-2026</td>
+                                    <td class="number" id="cop">12-31-2026</td>
+                                    <td class="number" id="retires" style="color: yellow;">5-10-2027</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>3</td>
+                                    <td class="number" id="pn">SO.98765</td>
+                                    <td class="number" id="po">PN.54321</td>
+                                    <td class="name" style="width: 8rem;">Michael Smith</td>
+                                    <td class="number" id="dob">09-25-1986</td>
+                                    <td class="number" id="doe">07-09-2010</td>
+                                    <td class="number" id="asp">06-14-2014</td>
+                                    <td class="number" id="dsp">08-28-2018</td>
+                                    <td class="number" id="supt">07-03-2022</td>
+                                    <td class="number" id="csupt">06-19-2026</td>
+                                    <td class="number" id="acp">05-02-2030</td>
+                                    <td class="number" id="dcop">03-15-2034</td>
+                                    <td class="number" id="cop">02-28-2034</td>
+                                    <td class="number" id="retires" style="color: yellow;">9-13-2034</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>4</td>
+                                    <td class="number" id="pn">SO.24680</td>
+                                    <td class="number" id="po">PN.13579</td>
+                                    <td class="name" style="width: 8rem;">Emily Brown</td>
+                                    <td class="number" id="dob">10-31-1973</td>
+                                    <td class="number" id="doe">08-17-1997</td>
+                                    <td class="number" id="asp">07-02-2001</td>
+                                    <td class="number" id="dsp">09-09-2005</td>
+                                    <td class="number" id="supt">08-13-2009</td>
+                                    <td class="number" id="csupt">07-18-2013</td>
+                                    <td class="number" id="acp">06-23-2017</td>
+                                    <td class="number" id="dcop">05-28-2021</td>
+                                    <td class="number" id="cop">04-02-2025</td>
+                                    <td class="number" id="retires" style="color: yellow;">11-15-2025</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>5</td>
+                                    <td class="number" id="pn">SO.13579</td>
+                                    <td class="number" id="po">PN.02468</td>
+                                    <td class="name" style="width: 8rem;">David Wilson</td>
+                                    <td class="number" id="dob">12-15-1982</td>
+                                    <td class="number" id="doe">10-28-2006</td>
+                                    <td class="number" id="asp">09-03-2010</td>
+                                    <td class="number" id="dsp">11-10-2014</td>
+                                    <td class="number" id="supt">10-15-2018</td>
+                                    <td class="number" id="csupt">09-20-2022</td>
+                                    <td class="number" id="acp">08-25-2026</td>
+                                    <td class="number" id="dcop">07-30-2030</td>
+                                    <td class="number" id="cop">06-04-2034</td>
+                                    <td class="number" id="retires" style="color: yellow;">12-17-2033</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>6</td>
+                                    <td class="number" id="pn">SO.98765</td>
+                                    <td class="number" id="po">PN.87654</td>
+                                    <td class="name" style="width: 8rem;">Sophia Martinez</td>
+                                    <td class="number" id="dob">07-22-1979</td>
+                                    <td class="number" id="doe">05-06-2003</td>
+                                    <td class="number" id="asp">03-11-2007</td>
+                                    <td class="number" id="dsp">05-18-2011</td>
+                                    <td class="number" id="supt">04-23-2015</td>
+                                    <td class="number" id="csupt">03-28-2019</td>
+                                    <td class="number" id="acp">02-02-2023</td>
+                                    <td class="number" id="dcop">12-16-2026</td>
+                                    <td class="number" id="cop">11-30-2030</td>
+                                    <td class="number" id="retires" style="color: yellow;">6-10-2030</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>7</td>
+                                    <td class="number" id="pn">SO.67890</td>
+                                    <td class="number" id="po">PN.56789</td>
+                                    <td class="name" style="width: 8rem;">Oliver Taylor</td>
+                                    <td class="number" id="dob">11-05-1985</td>
+                                    <td class="number" id="doe">08-19-2009</td>
+                                    <td class="number" id="asp">07-24-2013</td>
+                                    <td class="number" id="dsp">09-30-2017</td>
+                                    <td class="number" id="supt">09-14-2021</td>
+                                    <td class="number" id="csupt">08-19-2025</td>
+                                    <td class="number" id="acp">07-24-2029</td>
+                                    <td class="number" id="dcop">06-29-2033</td>
+                                    <td class="number" id="cop">05-04-2037</td>
+                                    <td class="number" id="retires" style="color: yellow;">11-17-2036</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <!-- Repeat this pattern for the remaining rows -->
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>8</td>
+                                    <td class="number" id="pn">SO.76543</td>
+                                    <td class="number" id="po">PN.65432</td>
+                                    <td class="name" style="width: 8rem;">Isabella Anderson</td>
+                                    <td class="number" id="dob">03-18-1988</td>
+                                    <td class="number" id="doe">12-01-2012</td>
+                                    <td class="number" id="asp">10-06-2016</td>
+                                    <td class="number" id="dsp">12-12-2020</td>
+                                    <td class="number" id="supt">11-17-2024</td>
+                                    <td class="number" id="csupt">10-22-2028</td>
+                                    <td class="number" id="acp">09-27-2032</td>
+                                    <td class="number" id="dcop">08-02-2036</td>
+                                    <td class="number" id="cop">07-07-2040</td>
+                                    <td class="number" id="retires" style="color: yellow;">4-20-2039</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>9</td>
+                                    <td class="number" id="pn">SO.54321</td>
+                                    <td class="number" id="po">PN.43210</td>
+                                    <td class="name" style="width: 8rem;">Mia Thompson</td>
+                                    <td class="number" id="dob">01-09-1980</td>
+                                    <td class="number" id="doe">10-23-2004</td>
+                                    <td class="number" id="asp">08-28-2008</td>
+                                    <td class="number" id="dsp">11-03-2012</td>
+                                    <td class="number" id="supt">10-08-2016</td>
+                                    <td class="number" id="csupt">09-13-2020</td>
+                                    <td class="number" id="acp">08-18-2024</td>
+                                    <td class="number" id="dcop">07-23-2028</td>
+                                    <td class="number" id="cop">06-27-2032</td>
+                                    <td class="number" id="retires" style="color: yellow;">4-10-2031</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <!-- Repeat this pattern for the remaining rows -->
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>10</td>
+                                    <td class="number" id="pn">SO.23456</td>
+                                    <td class="number" id="po">PN.34567</td>
+                                    <td class="name" style="width: 8rem;">Ethan Garcia</td>
+                                    <td class="number" id="dob">06-25-1977</td>
+                                    <td class="number" id="doe">04-09-2001</td>
+                                    <td class="number" id="asp">02-14-2005</td>
+                                    <td class="number" id="dsp">04-21-2009</td>
+                                    <td class="number" id="supt">03-26-2013</td>
+                                    <td class="number" id="csupt">02-01-2017</td>
+                                    <td class="number" id="acp">12-17-2020</td>
+                                    <td class="number" id="dcop">11-21-2024</td>
+                                    <td class="number" id="cop">10-26-2028</td>
+                                    <td class="number" id="retires" style="color: yellow;">8-10-2028</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>11</td>
+                                    <td class="number" id="pn">SO.78901</td>
+                                    <td class="number" id="po">PN.89012</td>
+                                    <td class="name" style="width: 8rem;">Ava Hernandez</td>
+                                    <td class="number" id="dob">09-12-1984</td>
+                                    <td class="number" id="doe">06-26-2008</td>
+                                    <td class="number" id="asp">05-01-2012</td>
+                                    <td class="number" id="dsp">07-08-2016</td>
+                                    <td class="number" id="supt">06-13-2020</td>
+                                    <td class="number" id="csupt">05-18-2024</td>
+                                    <td class="number" id="acp">04-23-2028</td>
+                                    <td class="number" id="dcop">03-28-2032</td>
+                                    <td class="number" id="cop">03-02-2036</td>
+                                    <td class="number" id="retires" style="color: yellow;">10-15-2035</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <!-- Repeat this pattern for the remaining rows -->
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>12</td>
+                                    <td class="number" id="pn">SO.87654</td>
+                                    <td class="number" id="po">PN.98765</td>
+                                    <td class="name" style="width: 8rem;">Olivia Rodriguez</td>
+                                    <td class="number" id="dob">02-28-1971</td>
+                                    <td class="number" id="doe">12-13-1995</td>
+                                    <td class="number" id="asp">10-18-1999</td>
+                                    <td class="number" id="dsp">12-24-2003</td>
+                                    <td class="number" id="supt">11-29-2007</td>
+                                    <td class="number" id="csupt">11-03-2011</td>
+                                    <td class="number" id="acp">10-08-2015</td>
+                                    <td class="number" id="dcop">09-12-2019</td>
+                                    <td class="number" id="cop">08-17-2023</td>
+                                    <td class="number" id="retires" style="color: yellow;">2-28-2023</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>13</td>
+                                    <td class="number" id="pn">SO.65432</td>
+                                    <td class="number" id="po">PN.76543</td>
+                                    <td class="name" style="width: 8rem;">James Lee</td>
+                                    <td class="number" id="dob">05-14-1976</td>
+                                    <td class="number" id="doe">03-29-2000</td>
+                                    <td class="number" id="asp">02-03-2004</td>
+                                    <td class="number" id="dsp">04-10-2008</td>
+                                    <td class="number" id="supt">03-15-2012</td>
+                                    <td class="number" id="csupt">02-20-2016</td>
+                                    <td class="number" id="acp">01-25-2020</td>
+                                    <td class="number" id="dcop">12-30-2023</td>
+                                    <td class="number" id="cop">11-04-2027</td>
+                                    <td class="number" id="retires" style="color: yellow;">5-17-2027</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <!-- Repeat this pattern for the remaining rows -->
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>14</td>
+                                    <td class="number" id="pn">SO.98765</td>
+                                    <td class="number" id="po">PN.87654</td>
+                                    <td class="name" style="width: 8rem;">Alexander White</td>
+                                    <td class="number" id="dob">08-20-1983</td>
+                                    <td class="number" id="doe">05-04-2007</td>
+                                    <td class="number" id="asp">03-09-2011</td>
+                                    <td class="number" id="dsp">05-16-2015</td>
+                                    <td class="number" id="supt">04-21-2019</td>
+                                    <td class="number" id="csupt">03-26-2023</td>
+                                    <td class="number" id="acp">02-01-2027</td>
+                                    <td class="number" id="dcop">12-06-2030</td>
+                                    <td class="number" id="cop">11-11-2034</td>
+                                    <td class="number" id="retires" style="color: yellow;">7-24-2034</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="is_selected" name="is_selected" value="is_selected"></td>
+                                    <td>15</td>
+                                    <td class="number" id="pn">SO.76543</td>
+                                    <td class="number" id="po">PN.65432</td>
+                                    <td class="name" style="width: 8rem;">Charlotte Harris</td>
+                                    <td class="number" id="dob">04-28-1974</td>
+                                    <td class="number" id="doe">02-11-1998</td>
+                                    <td class="number" id="asp">12-16-2002</td>
+                                    <td class="number" id="dsp">02-23-2006</td>
+                                    <td class="number" id="supt">01-28-2010</td>
+                                    <td class="number" id="csupt">12-04-2013</td>
+                                    <td class="number" id="acp">11-09-2017</td>
+                                    <td class="number" id="dcop">10-14-2021</td>
+                                    <td class="number" id="cop">09-19-2025</td>
+                                    <td class="number" id="retires" style="color: yellow;">3-02-2025</td>
+                                    <td class="edit" id="edit"><i class="material-symbols-outlined">ink_pen</i></td>
+                                    <td class="delete" id="delete"><i class="material-symbols-outlined">delete</i></td>
+                                </tr>
+                                <!-- Repeat this pattern for the remaining rows -->
+                                
+                               
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+
+    <script>
+
+        //script to select all checkboxes in the table
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectAllCheckbox = document.getElementById("select_all");
+            const checkboxes = document.querySelectorAll("#tableBody input[type='checkbox']");
+
+            selectAllCheckbox.addEventListener("change", function () {
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+            });
+        });
+
+
+
+        //sript for filtering the sort box
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get references to elements
+            const rankInput = document.getElementById('rank');
+            const onOrBeforeInput = document.getElementById('onorbefore');
+            const onOrAfterInput = document.getElementById('onorafter');
+            const tableRows = document.querySelectorAll('#main_table tbody tr');
+
+            // Add event listeners to inputs
+            rankInput.addEventListener('change', filterTable);
+            onOrBeforeInput.addEventListener('change', filterTable);
+            onOrAfterInput.addEventListener('change', filterTable);
+
+            // Filter table function
+            function filterTable() {
+                const selectedRank = rankInput.value;
+                const onOrBeforeDate = onOrBeforeInput.value ? new Date(onOrBeforeInput.value) : null;
+                const onOrAfterDate = onOrAfterInput.value ? new Date(onOrAfterInput.value) : null;
+
+                tableRows.forEach(row => {
+                    const rankCell = row.querySelector(`td#${selectedRank}`);
+                    if (rankCell) {
+                        const rankDate = new Date(rankCell.textContent);
+                        const shouldDisplay = (!onOrBeforeInput.value || rankDate <= onOrBeforeDate) &&
+                            (!onOrAfterInput.value || rankDate >= onOrAfterDate || rankDate
+                                .toDateString() === onOrAfterDate.toDateString()
+                            ); // Include equality here
+                        row.style.display = shouldDisplay ? 'table-row' : 'none';
+                    } else {
+                        row.style.display = 'table-row';
+                    }
+                });
+            }
+        });
+    </script>
+
+
+
+
+
+
+<section class="footer">
+    <center>
+      <footer>
+        <a href="#">PanDa v1.0 Copyright &copy2024 --- The AGBLE codeSTATION&trade;</a>
+      </footer>
+    </center>
+  </section>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+

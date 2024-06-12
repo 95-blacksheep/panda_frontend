@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="../../images/panda.svg" />
+
+    <title>Panda</title>
+
+    <!--Google's Material Font-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!--Links-->
+    <link rel="stylesheet" href="../../css/styles.css" />
+  </head>
+
+
+
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="../../admin/index.html">
+            <h3>Pan<span>Da</span></h3>
+          </a>
+        </div>
+
+        <div class="nav_items">
+            <ul class="navlist">
+              <li><a href="../../faqs.html" id="faqs">FAQ's</a></li>
+              <li><a href="../../admin/index.html" id="dashboard">Dashboard</a></li>
+              <li><a href="../../admin/logout.html" id="logout">Logout</a></li>
+            </ul>
+  
+  
+              <div class="nav_btns">
+                <btn id="open_nav-btn" class="material-symbols-outlined">
+                    menu
+                </btn>
+                <btn id="close_nav-btn" class="material-symbols-outlined">
+                    close
+                </btn>
+            </div>
+          </div>
+      </nav>
+    </header>
+
+
+
+
+
+
+
+
+
+    <section class="dashboard">
+        <div class="dashboard_container">
+            <aside>
+
+
+                
+                <div class="sidebar_toggle">
+                    <btn class="material-symbols-outlined" id="show_sidebar_btn">
+                      left_panel_close
+                    </btn>
+              
+                    <btn class="material-symbols-outlined" id="hide_sidebar_btn">
+                      left_panel_open
+                    </btn>
+                  </div>
+
+
+
+                  
+                <center>
+                    <div class="profile">
+                        <img src="../../images/dashboard_profile.jpg" alt="User's Profile Pic." />
+                        <h3>Pw/L/Cpl. Janet Jackson</h3>
+                        <p>Admin</p>
+                    </div>
+                </center>
+
+                <div class="aside_links">
+                    <div class="aside_links-group" style="margin-bottom: 2rem; padding: 0 1rem">
+                        <div class="group_name">
+                            <a href="../../admin/index.html" class="is_active">
+                                <span><i class="material-symbols-outlined">
+                                    home</i></span>
+                                Dashboard</a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="aside_links-group">
+                        <div class="group_name">
+                            <p>
+                                Pendings
+                            </p>
+
+                           
+                <span>
+                    <btn class="open_btn"
+                      ><i class="material-symbols-outlined">
+                        arrow_drop_down</i
+                    ></btn>
+                    <btn class="close_btn"
+                      ><i  class="material-symbols-outlined">arrow_drop_up</i
+                    ></btn>
+                  </span>
+                        </div>
+
+                        <div class="group_items" id="office_ops">
+                            <ul>
+                                <li>
+                                    <a href="index.html" style="color: var(--color_gold);">
+                                        <span><i class="material-symbols-outlined">
+                                            hourglass_top</i></span>
+                                        Preview Pending List</a>
+                                </li>
+
+                                <li>
+                                    <a href="new_pendings.html">
+                                        <span><i class="material-symbols-outlined">
+                                            hourglass_top</i></span>
+                                        New Pending</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <main>
+
+                
+                <div class="alert_message success" id="alert_message">
+                    <p>
+                        This is success!
+                    </p>
+                    <script>
+                        setTimeout(() => {
+                            alert_message.remove();
+                        }, 10000);
+                    </script>
+                </div>
+                <div class="main_container">
+                    <div class="main_title">
+                        <h1>Preview of <span> Pending Letters</span></h1>
+                        <p>Preview of all the pending letters at the Records Office.</p>
+                    </div>
+
+
+                        <div class="search_container">
+                            <center>
+                                <input type="text" class="search" id="search_input" placeholder="Search...">
+                            </center>
+                       </div>
+
+                       <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const searchInput = document.getElementById("search_input");
+                            const tableRows = document.querySelectorAll("#main_table tbody tr");
+
+                            searchInput.addEventListener("input", function () {
+                                // Get the input value and remove trailing consecutive spaces after each word
+                                const inputValue = this.value.replace(/\s+/g, ' ').trim();
+                                const searchText = inputValue.toLowerCase();
+
+                                let found = false;
+
+                                tableRows.forEach(function (row) {
+                                    const sno = row.querySelector(".number#sno").textContent
+                                        .toLowerCase();
+                                    const name = row.querySelector(".name").textContent
+                                        .toLowerCase();
+
+                                    if (sno.includes(searchText) || 
+                                        name.includes(searchText)) {
+                                        row.style.display = "";
+                                        found = true;
+                                        document.getElementById("recordnotfound").style
+                                            .display = "none";
+                                    } else {
+                                        row.style.display = "none";
+                                    }
+                                });
+
+                                // If no matching rows found, hide the table
+                                if (!found) {
+                                    document.querySelector(".main_table").style.display = "none";
+                                    document.getElementById("recordnotfound").style.display = "block";
+
+                                } else {
+                                    document.querySelector(".main_table").style.display = "";
+                                }
+                            });
+                        });
+                    </script>
+
+
+
+<center>
+    <div class="recordnotfound" id="recordnotfound" style="padding: 2rem 2rem; display: none; margin-top: 7rem; border-radius: .5rem; width: 25rem;
+    background-color: #273247 ; ">
+        <h3 style=" color: var(--color_danger); font-size: 1.5rem; text-decoration: underline;
+        padding: 1rem;">Record Not Found!</h3>
+        <p style=" font-size: .9rem;">Ensure Correct Spelling and Arrangement of Names or Format
+            of Service Numbers and search again.</p>
+    </div>
+</center>
+
+
+
+
+                    <div class="main_table">
+                        <table id="main_table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Rec
+                                    </th>
+                                    <th>
+                                        S/No.
+                                    </th>
+                                    <th>
+                                        Rank
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th >
+                                        Subject Matter
+                                    </th>
+                                    <th>
+                                        Region
+                                    </th>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        
+                                    </th>
+                                    <th>
+                                        
+                                    </th>
+                                </tr>
+                            </thead>
+
+
+
+
+
+                            <tbody id="tableBody">
+                                <tr>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td class="number" id="sno">
+                                        54536
+                                    </td>
+                                    <td>
+                                        C/Inspr
+                                    </td>
+                                    <td class="name" id="name">
+                                        John Mensah
+                                    </td>
+                                    <td class="subject_matter">
+                                       Kilometric Allowance
+                                    </td>
+                                    <td class="destination">
+                                        Depol/AR
+                                    </td>
+                                    <td class="number">
+                                        1-06-2024
+                                    </td>
+                                    <td class="edit">
+                                <i class="material-symbols-outlined">
+                                    ink_pen</i>
+                              </td>
+                              <td class="delete">
+                                <i class="material-symbols-outlined">
+                                    delete</i>
+                                  </td>
+                                </tr>
+
+                              
+
+
+                              
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    
+
+    <section class="footer">
+        <center>
+          <footer>
+            <a href="#">PanDa v1.0 Copyright &copy2024 --- The AGBLE codeSTATION&trade;</a>
+          </footer>
+        </center>
+      </section>
+    
+      <script src="../../js/main.js"></script>
+    </body>
+    </html>
+    
+
+
+
+

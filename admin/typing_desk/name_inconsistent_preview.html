@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="../../images/panda.svg" />
+
+    <title>Panda</title>
+
+    <!--Google's Material Font-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!--Links-->
+    <link rel="stylesheet" href="../../css/styles.css" />
+  </head>
+
+
+
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="../../admin/index.html">
+            <h3>Pan<span>Da</span></h3>
+          </a>
+        </div>
+
+        <div class="nav_items">
+            <ul class="navlist">
+              <li><a href="../../faqs.html" id="faqs">FAQ's</a></li>
+              <li><a href="../../admin/index.html" id="dashboard">Dashboard</a></li>
+              <li><a href="../../admin/logout.html" id="logout">Logout</a></li>
+            </ul>
+  
+  
+              <div class="nav_btns">
+                <btn id="open_nav-btn" class="material-symbols-outlined">
+                    menu
+                </btn>
+                <btn id="close_nav-btn" class="material-symbols-outlined">
+                    close
+                </btn>
+            </div>
+          </div>
+      </nav>
+    </header>
+
+
+
+
+
+
+
+
+
+    <section class="dashboard">
+        <div class="dashboard_container">
+            <aside style="height: 80rem;">
+
+
+
+                
+                <div class="sidebar_toggle">
+                    <btn class="material-symbols-outlined" id="show_sidebar_btn">
+                      left_panel_close
+                    </btn>
+              
+                    <btn class="material-symbols-outlined" id="hide_sidebar_btn">
+                      left_panel_open
+                    </btn>
+                  </div>
+
+
+
+
+                  
+                <center>
+                    <div class="profile">
+                        <img src="../../images/dashboard_profile.jpg" alt="User's Profile Pic." />
+                        <h3>Pw/L/Cpl. Janet Jackson</h3>
+                        <p>Admin</p>
+                    </div>
+                </center>
+
+                <div class="aside_links">
+                    <div class="aside_links-group" style="margin-bottom: 2rem; padding: 0 1rem">
+                        <div class="group_name">
+                            <a href="../../admin/index.html" class="is_active">
+                                <span><i class="material-symbols-outlined">
+                                        home</i></span>
+                                Dashboard</a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="aside_links-group">
+                        <div class="group_name">
+                            <p>
+                                Inconsistent Name (Rel.)
+                            </p>
+
+
+                            <span>
+                                <btn class="open_btn"><i class="material-symbols-outlined">
+                                        arrow_drop_down</i></btn>
+                                <btn class="close_btn"><i class="material-symbols-outlined">arrow_drop_up</i></btn>
+                            </span>
+                        </div>
+
+                        <div class="group_items" id="office_ops">
+                            <ul>
+                                <li>
+                                    <a href="index.html">
+                                        <span><i class="material-symbols-outlined">
+                                            keyboard</i></span>
+                                        Typing Desk</a>
+                                </li>
+                                <li>
+                                    <a href="death_relative.html">
+                                        <span><i class="material-symbols-outlined">
+                                                macro_off</i></span>
+                                        Preview List</a>
+                                </li>
+
+                                <li>
+                                    <a href="name_inconsistent.html" style="color: var(--color_gold);">
+                                        <span><i class="material-symbols-outlined">
+                                            macro_off</i></span>
+                                        Name Inconsistent (Rel.)</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <main>
+
+                <div class="alert_message success" id="alert_message">
+                    <p>
+                        This is success!
+                    </p>
+                    <script>
+                        setTimeout(() => {
+                            alert_message.remove();
+                        }, 10000);
+                    </script>
+                </div>
+
+                <style>
+                    main {
+                        height: 80rem;
+                    }
+                </style>
+                <div class="main_container">
+                    <div class="main_title">
+                        <h1>Preview <span> Signal</span></h1>
+                        <p>A minute to confirm entries could save the day. <span class="material-symbols-outlined">
+                                sentiment_satisfied
+                            </span></p>
+                    </div>
+
+
+
+                    <div class="action_panel">
+                        <div class="action_group" id="print">
+                            <i class="material-symbols-outlined">
+                                print</i>
+                            <p>Print</p>
+                        </div>
+
+
+                        <script>
+                            // Function to print the table
+                            document.getElementById("print").addEventListener("click", function () {
+                                var printContents = document.querySelector('.preview').innerHTML;
+                                var originalContents = document.body.innerHTML;
+                                document.body.innerHTML = printContents;
+                                window.print();
+                                document.body.innerHTML = originalContents;
+                            });
+                        </script>
+                    </div>
+
+
+                    <div class="preview">
+                        <center>
+                            <div class="logo_and_title" style="margin-top: 3.5rem;">
+                                <img src="../../images/police_logo.png" alt="ghana police logo">
+                                <h2 style=" color: black;
+                                    font-weight: bolder;
+                                    text-decoration: underline;
+                                    margin-bottom: 2rem;
+                                    line-height: 2;">POLICE WIRELESS MESSAGE</h2>
+                            </div>
+                        </center>
+
+                        <div class="address_panel" id="address">
+                            <div class="address_left">
+
+                                <p style="  text-align: left;
+                                    line-height: 2.2; color: black;
+                                    font-weight: 550;
+                                    word-spacing: .6rem;">
+
+                                    FROM : STAPOL <br>
+                                    TO : DEPOL/NR
+                                </p>
+                            </div>
+
+                            <div class="address_right" style="margin-top: -4.5rem;">
+                                <p style="color:black; font-weight: 550;">DTO: <span id="current_datetime"
+                                        style="color:black; font-weight: 550;"></span></p>
+
+                                        <script>
+                                            // Function to format single digit numbers with leading zero
+                                            function formatTimeValue(value) {
+                                                return value < 10 ? '0' + value : value;
+                                            }
+                                            // Function to update date and time
+                                            function updateDateTime() {
+                                                var now = new Date();
+                                                var day = formatTimeValue(now.getDate());
+                                                var hours = formatTimeValue(now.getHours());
+                                                var minutes = formatTimeValue(now.getMinutes());
+                                                var month = formatTimeValue(now.getMonth() + 1); // Adding 1 because getMonth returns zero-based index
+                                                var year = now.getFullYear();
+                                    
+                                                // Combine day and time into a single number
+                                                var combinedDateTime = day + formatTimeValue(hours.toString() + minutes.toString());
+                                    
+                                                var formattedDateTime = combinedDateTime + '/' + month + '/' + year;
+                                                document.getElementById('current_datetime').innerText = formattedDateTime;
+                                            }
+                                    
+                                            // Update the date and time initially and then set interval to update every second
+                                            window.onload = function () {
+                                                updateDateTime(); // Initial update
+                                                setInterval(updateDateTime, 1000); // Update every second
+                                            };
+                                        </script>
+                            </div>
+                        </div>
+
+
+
+                        
+
+
+
+                        <div class="body" id="signal_body">
+                            <p style="  text-align: left;
+                                line-height: 2.5; color: black;
+                                font-weight: 550;">ORIGNO: PO.1234/40 [.] REF. YOUR LETTER NO. ARHQ.256/V.38/203 DATED
+                                27/05/2005 
+                                
+                                RE - DEATH OF MADAM TEZENU HARUNA, MOTHER OF D/INSPR. 
+                                MUNIRU JOSEPH YOURS [.] GRATEFUL INFORM SUBJECT THAT THE SUBMITTED NAME AS 
+                                THE LATE MOTHER IS INCONSISTENT WITH THE AVAILABLE NAME ON RECORDS HELD AT THIS 
+                                HQRS [.]
+
+                                 REGARDS [.]
+
+                                 <p class="superscede" id="superscede" style="  text-align: left;
+                                 line-height: 2.5; color: black;
+                                 font-weight: 550;"> 
+                                THIS SIGNAL SUPERSCEDES HQRS SIGNAL NO. PN.12345/23 [.]
+                                </p>
+                            </p>
+                        </div>
+
+
+
+
+
+
+                        <center>
+                            <div class="signature">
+                                <p style="color: black; font-weight: 550;">
+                                    <i style="text-transform: lowercase;
+                                        font-weight: 550; color: black;">
+                                        for: </i>
+                                    ORIGINATOR <br>
+                                    [JONES PHANDOH/DESUPOL] <br>
+                                    [SO/RECORDS]
+                                </p>
+                            </div>
+                        </center>
+
+
+
+
+                        <div class="routine">
+                            <p style="color: black; font-weight: 550;">'ROUTINE'</p>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+        </main>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <section class="footer">
+        <center>
+          <footer>
+            <a href="#">PanDa v1.0 Copyright &copy2024 --- The AGBLE codeSTATION&trade;</a>
+          </footer>
+        </center>
+      </section>
+    
+      <script src="../../js/main.js"></script>
+    </body>
+    </html>
+    
